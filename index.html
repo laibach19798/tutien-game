@@ -1,0 +1,25 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><title>Làng Tu Tiên</title>
+<style>
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none;background:#1b2130}
+#stage{position:fixed;inset:0;background:#1b2130;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#game{display:block;width:100%;height:100%;image-rendering:pixelated}
+#hud{position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 8px);right:12px;color:#f3efe4;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;text-shadow:0 1px 2px #000;pointer-events:none}
+#stick{position:absolute;left:calc(22px + env(safe-area-inset-left,0px));bottom:calc(28px + env(safe-area-inset-bottom,0px));width:150px;height:150px;border-radius:50%;background:rgba(243,239,228,.14);border:2px solid rgba(243,239,228,.4);display:none;touch-action:none}
+#knob{position:absolute;left:43px;top:43px;width:64px;height:64px;border-radius:50%;background:rgba(243,239,228,.55);border:2px solid rgba(243,239,228,.85);pointer-events:none}
+#wardrobe{position:absolute;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(136px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px}
+#wardrobe button{min-width:76px;min-height:42px;padding:0 14px;border-radius:12px;border:1px solid rgba(243,239,228,.45);background:rgba(27,33,48,.72);color:#f3efe4;font:600 14px system-ui,sans-serif;touch-action:manipulation}
+#wardrobe button.on{background:rgba(243,239,228,.92);color:#1b2130}
+#btn-attack{position:absolute;right:calc(116px + env(safe-area-inset-right,0px));bottom:calc(36px + env(safe-area-inset-bottom,0px));width:84px;height:84px;border-radius:50%;border:2px solid rgba(190,120,255,.8);background:rgba(150,70,230,.3);color:#f3efe4;font:700 15px system-ui,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}
+#btn-attack:active{background:rgba(190,120,255,.6)}
+#btn-jump{position:absolute;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(36px + env(safe-area-inset-bottom,0px));width:84px;height:84px;border-radius:50%;border:2px solid rgba(243,239,228,.6);background:rgba(243,239,228,.2);color:#f3efe4;font:700 15px system-ui,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}
+#btn-jump:active{background:rgba(243,239,228,.5)}
+@media (pointer:coarse){#stick{display:block}}
+</style></head>
+<body>
+<div id="stage"><canvas id="game"></canvas><div id="hud">Đang tải...</div><div id="wardrobe"></div><button id="btn-attack" type="button">Chém</button><button id="btn-jump" type="button">Nhảy</button><div id="stick"><div id="knob"></div></div></div>
+<script src="src/config.js"></script><script src="src/data/equipment.js"></script><script src="src/data/assets.js"></script>
+<script src="src/data/playerBase.js"></script><script src="src/data/directions.js"></script>
+<script src="src/core/AssetManager.js"></script><script src="src/core/TouchStick.js"></script><script src="src/core/Input.js"></script><script src="src/core/Camera.js"></script>
+<script src="src/player/PlayerMovement.js"></script><script src="src/player/PlayerAnimation.js"></script><script src="src/player/Player.js"></script>
+<script src="src/world/World.js"></script><script src="src/main.js"></script>
+</body></html>
