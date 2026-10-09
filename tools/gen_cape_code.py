@@ -35,6 +35,19 @@ for d,b in enumerate(ROT):
             if sk[y,x]:
                 j=xs[np.argmin(abs(xs-x))];fill[y,x,:3]=(im[y,j]*.72).astype(np.uint8);fill[y,x,3]=255
     tiles.append((front,fill,m))
+# --- Huong Nam: ao chi lo co + ao treo sau lung (lay dang tu mat sau - Bac)
+fS,flS,mS=tiles[0];fN,flN,mN=tiles[4]
+lab,nl=ndi.label(mS,structure=np.ones((3,3)))
+tops=[np.where(lab==i)[0].min() for i in range(1,nl+1)];keep=1+int(np.argmin(tops))
+mc=lab==keep
+frontS=fS.copy();frontS[~mc,3]=0
+def collar(m):
+    ys=np.where(m.any(1))[0];y=ys.min();xs=np.where(m[y:y+3])[1];return y,xs.mean()
+yS,xS=collar(mc);yN,xN=collar(mN)
+ddx=int(round(xS-xN));ddy=yS-yN
+def shf(a):return np.roll(np.roll(a,ddy,0),ddx,1)
+backS=shf(fN).copy();backS[...,:3]=(backS[...,:3]*.7).astype(np.uint8)
+tiles[0]=(frontS,backS,shf(mN))
 def anim(tile,d,anim_,f):
     front,fill,m=tile;fx,fy=FACE[d];c=CFG[anim_];n=NF[anim_];ph=2*math.pi*f/n
     rows=np.where(m.any(1))[0];y0,y1=rows.min(),rows.max()
